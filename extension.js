@@ -32,25 +32,8 @@ function activate(context) {
   // The commandId parameter must match the command field in package.json
   let disposable = vscode.commands.registerCommand('extension.helloWorld', async () => {
     // The code you place here will be executed every time your command is executed
-
-    // Display a message box to the user
-    const config = vscode.workspace.getConfiguration(
-      'editor',
-      vscode.workspace.workspaceFolders[0].uri
-    );
-    try {
-      const steps = [12, 32, 48, 12, 32, 48, 64, 48, 6, 12];
-      for (const step of steps) {
-        await config.update('fontSize', step, vscode.ConfigurationTarget.WorkspaceFolder);
-        await timeout(500);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-    console.log(vscode.workspace.getConfiguration('editor').get('tabSize'));
-    console.log(vscode.workspace.getConfiguration('editor').get('background'));
-    console.log(vscode.workspace.getConfiguration('editor').get('foreground'));
-    await vscode.commands.executeCommand('editor.action.formatDocument');
+    // Display a message box to the
+    await changeFontSize();
   });
 
   let join = vscode.commands.registerCommand('extension.joinGame', async () => {
@@ -147,20 +130,72 @@ function activate(context) {
           })
           .filter(event => event);
 
-        yourEvents.forEach(event => {
+        for (const event of yourEvents) {
           if (!userEvents.has(event.id)) {
             vscode.window.showWarningMessage(`Drink ${event.amount} shots !!!`);
             userEvents.set(event.id, events);
+            switch (event.type) {
+              default:
+                await changeFontSize();
+                break;
+            }
           }
-        });
+        }
       });
   });
 
-  let submit = vscode.commands.registerCommand('extension.submitCode', async () => {});
+  let submit = vscode.commands.registerCommand('extension.submitCode', async () => {
+    // await fetch(
+    //   `https://us-central1-code-in-the-drunk.cloudfunctions.net/api/rooms/${selectedRoom}/events`,
+    //   {
+    //     method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     }, // no-referrer, *client
+    //     body: JSON.stringify({
+    //       playerId: username,
+    //       type: 'fontSize',
+    //     }), // body data type must match "Content-Type" header
+    //   }
+    // );
+    console.log('Submit');
+  });
 
   context.subscriptions.push(disposable);
   context.subscriptions.push(join);
   context.subscriptions.push(submit);
+}
+
+async function changeFontSize() {
+  const config = vscode.workspace.getConfiguration(
+    'editor',
+    vscode.workspace.workspaceFolders[0].uri
+  );
+  try {
+    const steps = [12, 32, 48, 12, 32, 48, 64, 48, 6, 12];
+    for (const step of steps) {
+      await config.update('fontSize', step, vscode.ConfigurationTarget.WorkspaceFolder);
+      await timeout(500);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+async function changeBackgroundColor() {
+  const config = vscode.workspace.getConfiguration(
+    'workbench',
+    vscode.workspace.workspaceFolders[0].uri
+  );
+  try {
+    const colors = ['Monokai', 'Red'];
+    for (const color of colors) {
+      await config.update('colorTheme', color, vscode.ConfigurationTarget.WorkspaceFolder);
+      await timeout(500);
+    }
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function timeout(ms) {

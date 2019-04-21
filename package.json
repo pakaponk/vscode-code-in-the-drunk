@@ -45,6 +45,7 @@
     "@types/mocha": "^2.2.42"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "firebase": "^5.9.4"
   }
 }
