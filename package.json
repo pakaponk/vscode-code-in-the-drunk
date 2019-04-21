@@ -4,25 +4,32 @@
   "description": "Code competition game with a lot of beers",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.33.0"
+    "vscode": "^1.30.0"
   },
   "categories": [
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.helloWorld",
-    "onCommand:extension.joinGame"
+    "onCommand:extension.joinGame",
+    "onCommand:extension.helloWorld"
   ],
   "main": "./extension.js",
   "contributes": {
     "commands": [
       {
         "command": "extension.helloWorld",
-        "title": "Hello World"
+        "title": "Test command",
+        "category": "Code in the drunk"
       },
       {
         "command": "extension.joinGame",
-        "title": "Join Game"
+        "title": "Join Code in the drunk",
+        "category": "Code in the drunk"
+      },
+      {
+        "command": "extension.submitCode",
+        "title": "Submit code",
+        "category": "Code in the drunk"
       }
     ]
   },
@@ -38,6 +45,6 @@
     "@types/mocha": "^2.2.42"
   },
   "dependencies": {
-    "firebase": "^5.10.0"
+    "firebase": "^5.9.4"
   }
 }
