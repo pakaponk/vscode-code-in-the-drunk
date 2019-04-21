@@ -220,10 +220,12 @@ function getCodeTemplate(progress) {
       return `
 function solution(arrays) {
   Write your codes here;
-}
-      `;
+}`;
     default:
-      return 'string';
+      return `
+function solution() {
+};
+`;
   }
 }
 
@@ -255,6 +257,53 @@ function getProblemContent(progress) {
           <body>
               <h1>Problem 2</h1>
               <p>Write a function receive array of integers and return new array which contains only odd number</p>
+          </body>
+        </html>`;
+    case 2:
+      return `
+        <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Code in the drunk</title>
+          </head>
+          <body>
+              <h1>Problem 3</h1>
+              <p>
+              You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order and each of their nodes contain a single digit. Add the two numbers and return it as a linked list.
+              </p>
+              <p>You may assume the two numbers do not contain any leading zero, except the number 0 itself.</p>
+          </body>
+        </html>`;
+    case 3:
+      return `
+        <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Code in the drunk</title>
+          </head>
+          <body>
+              <h1>Problem 4</h1>
+              <p>Given a 32-bit signed integer, reverse digits of an integer.</p>
+          </body>
+        </html>`;
+    case 4:
+      return `
+        <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Code in the drunk</title>
+          </head>
+          <body>
+              <h1>Problem 5</h1>
+              <p>Write a program that outputs the string representation of numbers from 1 to n.</p>
+              <p>
+              But for multiples of three it should output “Fizz” instead of the number and for the multiples of five output “Buzz”. For numbers which are multiples of both three and five output “FizzBuzz”.</p>
           </body>
         </html>`;
   }
