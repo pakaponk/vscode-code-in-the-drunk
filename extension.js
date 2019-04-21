@@ -306,6 +306,20 @@ function getProblemContent(progress) {
               But for multiples of three it should output “Fizz” instead of the number and for the multiples of five output “Buzz”. For numbers which are multiples of both three and five output “FizzBuzz”.</p>
           </body>
         </html>`;
+    case 5:
+      return `
+      <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Code in the drunk</title>
+        </head>
+        <body>
+            <h1>Congratulation!</h1>
+            <h2>You win!</h2>
+        </body>
+      </html>`;
   }
 }
 
