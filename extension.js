@@ -3,6 +3,7 @@
 const vscode = require('vscode');
 const firebase = require('firebase/app');
 require('firebase/database');
+const axios = require('axios');
 
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
@@ -33,7 +34,8 @@ function activate(context) {
   let disposable = vscode.commands.registerCommand('extension.helloWorld', async () => {
     // The code you place here will be executed every time your command is executed
     // Display a message box to the
-    await changeFontSize();
+    // await changeFontSize();
+    await changeBackgroundColor();
   });
 
   let join = vscode.commands.registerCommand('extension.joinGame', async () => {
@@ -158,6 +160,15 @@ function activate(context) {
     //     }), // body data type must match "Content-Type" header
     //   }
     // );
+
+    await axios({
+      method: 'post',
+      url: `https://us-central1-code-in-the-drunk.cloudfunctions.net/api/rooms/${selectedRoom}/events`,
+      data: {
+        playerId: username,
+        type: 'fontSize',
+      },
+    });
     console.log('Submit');
   });
 
